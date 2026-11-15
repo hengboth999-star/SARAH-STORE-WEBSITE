@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}ការបញ្ជាទិញ #{{ order.id }} | SARAH STORE{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('home') }}">← ត្រឡប់ទៅទំព័រដើម</a>
+<section class="panel narrow">
+  <h1>ការបញ្ជាទិញ #{{ order.id }}</h1>
+  <div class="order-line"><span>ហ្គេម</span><b>{{ order.game_name }}</b></div>
+  <div class="order-line"><span>កញ្ចប់</span><b>{{ "{:,}".format(order.package_amount) }}</b></div>
+  <div class="order-line"><span>ព័ត៌មានគណនី</span><b>{{ order.account_info }}{% if order.extra_info %} / {{ order.extra_info }}{% endif %}</b></div>
+  <div class="order-line total"><span>សរុប</span><b>${{ "%.2f"|format(order.price) }}</b></div>
+  <div class="notice warning"><b>របៀបសាកល្បងប៉ុណ្ណោះ</b><br>ABA KHQR មិនទាន់ភ្ជាប់ទេ។ កុំផ្ទេរប្រាក់ទៅ QR ណាមួយដោយផ្អែកលើទំព័រនេះ។ ការបញ្ជាទិញនេះមិនទាន់បានបង់ប្រាក់ និងមិនទាន់មានការបញ្ចូលផលិតផលទេ។</div>
+  <p>ស្ថានភាព៖ <b>{{ order.status }}</b></p>
+  <a class="btn full" href="{{ url_for('orders') }}">មើលការបញ្ជាទិញរបស់ខ្ញុំ</a>
+</section>
+{% endblock %}

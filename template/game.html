@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ game.name }} | SARAH STORE{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('home') }}">← ត្រឡប់ទៅហ្គេមទាំងអស់</a>
+<section class="game-hero"><div class="game-art big">{{ "🧱" if slug == "roblox" else "🔥" if slug == "free-fire" else "⚔️" if slug == "mobile-legends" else "⚽" }}</div><div><h1>{{ game.name }}</h1><p>{{ game.subtitle }} · SARAH STORE</p></div></section>
+<form method="post" class="purchase-layout">
+  <section class="panel">
+    <h2>១. ជ្រើសរើសកញ្ចប់</h2>
+    <div class="package-grid">
+      {% for amount, price in game.packages %}
+      <label class="package">
+        <input type="radio" name="package_index" value="{{ loop.index0 }}" {% if loop.first %}checked{% endif %} required>
+        <b>{{ "{:,}".format(amount) }} {{ "Robux" if slug == "roblox" else "Diamonds" if slug in ["free-fire","mobile-legends"] else "Coins" }}</b>
+        <strong>${{ "%.2f"|format(price) }}</strong>
+      </label>
+      {% endfor %}
+    </div>
+    <h2 class="space-top">២. ព័ត៌មានគណនី</h2>
+    <label class="field-label">{{ game.field_label }}</label>
+    <input class="text-input" type="text" name="{{ game.field_name }}" placeholder="សូមបញ្ចូល {{ game.field_label }}" required>
+    {% if game.extra_field_name %}
+      <label class="field-label">{{ game.extra_field_label }}</label>
+      <input class="text-input" type="text" name="{{ game.extra_field_name }}" placeholder="សូមបញ្ចូល {{ game.extra_field_label }}" required>
+    {% endif %}
+    <p class="hint">⚠️ សូមពិនិត្យព័ត៌មានគណនីឱ្យបានត្រឹមត្រូវ។ កុំបញ្ចូលពាក្យសម្ងាត់គណនីហ្គេមរបស់អ្នក។</p>
+    <div class="notice">ការពិនិត្យគណនីពិតប្រាកដនឹងដំណើរការបន្ទាប់ពីភ្ជាប់ API ដែលគាំទ្រ។ បច្ចុប្បន្ននេះជាគម្រោងសាកល្បងប៉ុណ្ណោះ។</div>
+    <button class="btn full" type="submit">បន្តទៅការបញ្ជាទិញ</button>
+  </section>
+  <aside class="panel summary"><h2>ព័ត៌មានសំខាន់</h2><p>ហ្គេម៖ <b>{{ game.name }}</b></p><p>ជ្រើសរើសកញ្ចប់ និងបញ្ចូលព័ត៌មានគណនី រួចបន្តទៅជំហានបន្ទាប់។</p><p class="hint">តម្លៃនៅក្នុងគម្រោងនេះជាតម្លៃគំរូ។ សូមកែតម្រូវមុនដាក់ឱ្យអតិថិជនប្រើប្រាស់។</p></aside>
+</form>
+{% endblock %}

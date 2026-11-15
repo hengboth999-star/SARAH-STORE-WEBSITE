@@ -1,0 +1,57 @@
+
+<!doctype html>
+<html lang="km">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SARAH STORE{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="apple-touch-icon"
+      href="{{ url_for('static', filename='images/sarah-logo.png') }}">
+
+<link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/sarah-logo.png') }}">
+
+<link rel="manifest"
+      href="{{ url_for('static', filename='manifest.json') }}">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="{{ url_for('home') }}">
+    <img
+      src="{{ url_for('static', filename='images/sarah-logo.png') }}"
+      alt="SARAH STORE Logo"
+      class="store-logo"
+    >
+    <span>
+      <b>SARAH STORE</b>
+      <small>ហាងបញ្ចូលហ្គេមអនឡាញ</small>
+    </span>
+  </a>
+
+  <nav>
+    <a href="{{ url_for('home') }}">ទំព័រដើម</a>
+    <a href="{{ url_for('home') }}#games">ហ្គេមទាំងអស់</a>
+    <a href="{{ url_for('orders') }}">ការបញ្ជាទិញ</a>
+    <a href="https://t.me/sarah168hd" target="_blank" rel="noopener">ទំនាក់ទំនង</a>
+  </nav>
+</header>
+
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="notice {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+</main>
+
+<footer>
+  © SARAH STORE · សូមអរគុណដែលបានគាំទ្រហាងរបស់យើង
+</footer>
+
+</body>
+</html>
