@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}SARAH STORE | ទំព័រដើម{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <span class="eyebrow">សូមស្វាគមន៍មកកាន់</span>
+    <h1>SARAH STORE</h1>
+    <h2>បញ្ចូលហ្គេមបានងាយស្រួល និងរហ័ស</h2>
+    <p>ជ្រើសរើសហ្គេមដែលអ្នកចូលចិត្ត ហើយមើលកញ្ចប់ដែលមាននៅក្នុងហាង។</p>
+    <a class="btn" href="#games">មើលហ្គេមទាំងអស់</a>
+  </div>
+  <div class="hero-art">🎮</div>
+</section>
+<section id="games">
+  <div class="section-heading"><div><h2>ហ្គេមពេញនិយម</h2><p>សូមជ្រើសរើសហ្គេមរបស់អ្នក</p></div></div>
+  <div class="game-grid">
+    {% for slug, game in games.items() %}
+    <a class="game-card" href="{{ url_for('game_page', slug=slug) }}">
+      <div class="game-art">{{ "🧱" if slug == "roblox" else "🔥" if slug == "free-fire" else "⚔️" if slug == "mobile-legends" else "⚽" }}</div>
+      <h3>{{ game.name }}</h3><p>{{ game.subtitle }}</p><span class="card-link">ជ្រើសរើស →</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+<section class="features">
+  <div>🔒 <b>ការទូទាត់មានសុវត្ថិភាព</b><small>នឹងភ្ជាប់ប្រព័ន្ធផ្លូវការមុនដាក់ឱ្យប្រើប្រាស់</small></div>
+  <div>⚡ <b>ការបញ្ចូលរហ័ស</b><small>អាស្រ័យលើសេវា API របស់អ្នកផ្គត់ផ្គង់</small></div>
+  <div>💬 <b>ជំនួយអតិថិជន</b><small>ទាក់ទងតាម Telegram</small></div>
+</section>
+{% endblock %}
