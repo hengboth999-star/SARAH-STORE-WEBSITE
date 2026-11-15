@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+{% block title %}Admin Login | SARAH STORE{% endblock %}
+
+{% block content %}
+<section class="panel narrow">
+    <h1>ចូលគណនី Admin</h1>
+    <p>សូមបញ្ចូលព័ត៌មានដើម្បីចូលផ្ទាំងគ្រប់គ្រង។</p>
+
+    <form method="post">
+        <label class="field-label">ឈ្មោះអ្នកប្រើ</label>
+        <input class="text-input"
+               type="text"
+               name="username"
+               autocomplete="username"
+               required>
+
+        <label class="field-label">ពាក្យសម្ងាត់</label>
+        <input class="text-input"
+               type="password"
+               name="password"
+               autocomplete="current-password"
+               required>
+
+        <button class="btn full" type="submit">
+            ចូលគណនី
+        </button>
+    </form>
+</section>
+{% endblock %}

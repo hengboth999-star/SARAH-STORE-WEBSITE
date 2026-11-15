@@ -1,10 +1,42 @@
+
 {% extends "base.html" %}
 {% block title %}Admin | SARAH STORE{% endblock %}
+
 {% block content %}
-<section class="panel"><h1>ផ្ទាំងគ្រប់គ្រង (សាកល្បង)</h1>
-<div class="notice warning">ទំព័រនេះមិនទាន់មានការចូលគណនី Admin ទេ។ កុំដាក់គេហទំព័រនេះជាសាធារណៈ មុនពេលបន្ថែមការការពារ Login និងសិទ្ធិប្រើប្រាស់។</div>
-{% if orders %}<div class="table-wrap"><table><thead><tr><th>លេខ</th><th>ហ្គេម</th><th>គណនី</th><th>តម្លៃ</th><th>ស្ថានភាព</th></tr></thead><tbody>
-{% for o in orders %}<tr><td>#{{ o.id }}</td><td>{{ o.game_name }}</td><td>{{ o.account_info }}</td><td>${{ "%.2f"|format(o.price) }}</td><td>{{ o.status }}</td></tr>{% endfor %}
-</tbody></table></div>{% else %}<p>មិនទាន់មានការបញ្ជាទិញទេ។</p>{% endif %}
+<section class="panel">
+    <h1>ផ្ទាំងគ្រប់គ្រង SARAH STORE</h1>
+
+    <form method="post" action="{{ url_for('admin_logout') }}">
+        <button class="btn" type="submit">ចាកចេញពី Admin</button>
+    </form>
+
+    {% if orders %}
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>លេខ</th>
+                    <th>ហ្គេម</th>
+                    <th>គណនី</th>
+                    <th>តម្លៃ</th>
+                    <th>ស្ថានភាព</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in orders %}
+                <tr>
+                    <td>#{{ o.id }}</td>
+                    <td>{{ o.game_name }}</td>
+                    <td>{{ o.account_info }}</td>
+                    <td>${{ "%.2f"|format(o.price) }}</td>
+                    <td>{{ o.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>មិនទាន់មានការបញ្ជាទិញទេ។</p>
+    {% endif %}
 </section>
 {% endblock %}
